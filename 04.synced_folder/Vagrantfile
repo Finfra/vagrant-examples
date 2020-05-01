@@ -1,0 +1,14 @@
+# Example 2
+#
+# Single box with VirtualBox provider.
+#
+# NOTE: Make sure you have the ubuntu/trusty64 base box installed...
+# vagrant box add ubuntu/trusty64 http://files.vagrantup.com/ubuntu/trusty64.box
+#
+# VirtualBox modifyvm docs: http://www.virtualbox.org/manual/ch08.html#vboxmanage-modifyvm
+
+Vagrant.configure("2") do |config|
+  config.vm.network :private_network, ip: "172.3.4.11"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
+  config.vm.box = "lasp/ubuntu18.04"
+end

@@ -38,17 +38,17 @@ These commands will bring up the Vagrant box, SSH into it, and then remove it re
 * 01.skel
 * 02.basic
 * 03.provider
-* 04.MultiBox
-* 05.MultiBox_parameter_if
-* 06.ClientServer
-* 07.ProvisionScript
-* 08.InstallDocker
-* 09.Argument
-* 10.ShareFolder
-* 11.skelAll
-* 12.WithConfigFile
-* 13.QuickMultiBox
-
+* 04.synced folder
+* 05.MultiBox
+* 06.MultiBox_parameter_if
+* 07.ClientServer
+* 08.ProvisionScript
+* 09.InstallDocker
+* 10.Argument
+* 11.ShareFolder
+* 12.skelAll
+* 13.WithConfigFile
+* 14.QuickMultiBox
 
 # etc
 * Powered by [finfra.com](http://finfra.com)
