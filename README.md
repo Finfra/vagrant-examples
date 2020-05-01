@@ -38,7 +38,7 @@ These commands will bring up the Vagrant box, SSH into it, and then remove it re
 * 01.skel
 * 02.basic
 * 03.provider
-* 04.synced folder
+* 04.synced_folder
 * 05.MultiBox
 * 06.MultiBox_parameter_if
 * 07.ClientServer
