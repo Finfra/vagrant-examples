@@ -1,0 +1,31 @@
+Vagrant.configure("2") do |config|
+  config.vm.box_check_update = false
+  config.vm.provider 'virtualbox' do |vb|
+   vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
+  end      
+  # config.vm.box = "peru/ubuntu-18.04-desktop-amd64"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
+  config.vm.provider 'virtualbox' do |v|
+    v.cpus = 1
+    v.customize ["modifyvm", :id, "--cpus", "1"]   
+    v.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
+    # v.customize ["modifyvm", :id, "--ioapic", "on"]
+    # v.customize ["modifyvm", :id, "--vtxux", "on"]
+    # v.customize ["modifyvm", :id, "--vtxvpid", "on"]
+  end
+  # config.vm.box = "generic/ubuntu1804"
+  config.vm.box = "peru/ubuntu-18.04-desktop-amd64"
+  config.vm.box_version = "20190701.01"
+  $theIp = "172.3.4.5"
+  $hostname="ubuntu1804"
+  config.vm.hostname = $hostname
+  config.vm.network "private_network", ip: $theIp
+  config.vm.provider "virtualbox" do |vb|
+        vb.memory = "2072"
+        vb.cpus = 1
+        vb.name = $hostname
+  end
+  $script = "/bin/bash --login /vagrant/installVagrant.sh"
+  config.vm.provision :shell, privileged: false, inline: $script
+  # config.vm.provision "shell", path: "installVagrant.sh", args: [$theIp,$hostname]
+end

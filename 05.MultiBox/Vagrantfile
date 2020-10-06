@@ -18,9 +18,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "node-#{i}" do |node|
       node.vm.provision "shell",
         inline: "echo hello from node #{i}"
-      config.vm.box = "lasp/ubuntu18.04"
-      config.vm.hostname = "ubuntu.box"
-      config.vm.network :private_network, ip: "172.3.4.1#{i}"
+      node.vm.box = "lasp/ubuntu18.04"
+      node.vm.hostname = "ubuntu.box"
+      node.vm.network :private_network, ip: "172.3.4.1#{i}"
     end
     
   end
