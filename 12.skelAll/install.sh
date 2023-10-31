@@ -1,2 +1,2 @@
 #!/bin/bash
-apt upudata -y
+apt upudate -y
