@@ -1,6 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-user_name = "uplex"
+user_name = "ubuntu"
 
 bootstrap = <<SCRIPT
 echo "export LC_ALL=C.UTF-8"                  >> /etc/bash.bashrc
