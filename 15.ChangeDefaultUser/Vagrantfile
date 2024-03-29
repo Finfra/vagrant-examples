@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+user_name = "uplex"
+
+bootstrap = <<SCRIPT
+echo "export LC_ALL=C.UTF-8"                  >> /etc/bash.bashrc
+echo "export DEBIAN_FRONTEND=noninteractive"  >> /etc/bash.bashrc
+echo "export EDITOR=vi"                       >> /etc/bash.bashrc
+
+chmod +w /etc/sudoers
+echo "#{user_name} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+chmod 440 /etc/sudoers
+
+useradd -m #{user_name} --groups sudo -s /bin/bash
+touch /home/#{user_name}/.sudo_as_admin_successful
+su -c "printf 'cd /home/#{user_name}\nsudo su #{user_name}' >> /home/vagrant/.bash_profile" -s /bin/bash vagrant
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.network :private_network, ip: "192.168.56.2"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
+  config.vm.box = "generic/ubuntu2004"
+  config.vm.host_name = user_name
+  config.vm.provision "shell", inline: bootstrap, privileged: true
+end
